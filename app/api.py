@@ -1,6 +1,14 @@
 from fastapi import FastAPI
+from functools import lru_cache
+import os
+from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
 
+@lru_cache()
+def cached_dotenv():
+  load_dotenv()
+
+cached_dotenv()
 
 app = FastAPI()
 
