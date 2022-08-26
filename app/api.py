@@ -21,7 +21,8 @@ app = FastAPI()
 origins = [
     "http://localhost:3001",
     "localhost:3000",
-    "https://stealth-challenge.netlify.app/",
+    "https://stealth-challenge.netlify.app",
+    "stealth-challenge.netlify.app",
 ]
 
 
