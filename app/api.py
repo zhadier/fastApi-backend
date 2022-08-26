@@ -33,6 +33,10 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+@app.get("/")
+def home_view():
+    return{"Hi": "Welcome to my app"}
+
 
 @app.get("/company-accounts")
 async def read_root() -> dict:
