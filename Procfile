@@ -1,1 +1,1 @@
-web: uvicorn app.api:app --host "0.0.0.0" --post ${PORT:-8000}
+web: gunicorn -w 4 -k uvicorn.workers.UvicornWorker app/api:app
