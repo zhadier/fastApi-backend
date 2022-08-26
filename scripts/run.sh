@@ -1,0 +1,1 @@
+uvicorn app.api:app --reload --port 3000
