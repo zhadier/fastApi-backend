@@ -1,10 +1,10 @@
 ![](https://img.shields.io/static/v1?label=BY&message=ZeeshanHaider&color=red)
 
-## fastApi-backend
+## FastApi backend
 
 > The backend API connected to the Airtable database for the Stealth coding challenge.
 
-## Front-end Repository
+### Front-end Repository
 
 You can find the front-end repository [right here](https://github.com/zhadier/Stealth-Coding-Challenge) to check the code used in the website to implement this API. This project was made with React
 
