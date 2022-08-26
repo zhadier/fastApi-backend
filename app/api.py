@@ -3,6 +3,7 @@ from functools import lru_cache
 import os
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
+from .airtable import Airtable
 
 @lru_cache()
 def cached_dotenv():
@@ -10,10 +11,15 @@ def cached_dotenv():
 
 cached_dotenv()
 
+AIRTABLE_BASE_ID = os.environ.get("AIRTABLE_BASE_ID")
+AIRTABLE_API_KEY = os.environ.get("AIRTABLE_API_KEY")
+AIRTABLE_TABLE_NAME = os.environ.get("AIRTABLE_TABLE_NAME")
+
+
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",
+    "http://localhost:3001",
     "localhost:3000"
 ]
 
@@ -29,25 +35,6 @@ app.add_middleware(
 
 @app.get("/company-accounts")
 async def read_root() -> dict:
-    return {
-    "fields": {
-      "Account": "Intercom",
-      "External_id ": "ATY67YT789",
-      "Phone Number": "(510) 592-6600",
-      "Company Size": "1-10",
-      "MRR": 400,
-      "Total signals": 32,
-      "Assigned CSM name": "John Doe",
-      "Assigned CSM email": "john@csm.com",
-      "Segments": [
-        "Mid Market",
-        "B2B"
-      ],
-      "Company Logo": "https://logo.clearbit.com/intercom.io",
-      "Website": "https://intercom.io",
-      "Renewal date ": "2022-10-13",
-      "Applied View": [
-        "Renewal upcoming"
-      ]
-    }
-  ,}
+    airtable_client = Airtable(base_id=AIRTABLE_BASE_ID, api_key=AIRTABLE_API_KEY,table_name=AIRTABLE_TABLE_NAME)
+    return airtable_client.get_companies()
+  
