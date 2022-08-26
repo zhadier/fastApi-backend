@@ -1,4 +1,5 @@
 import os
+from typing import Dict
 import requests
 from dataclasses import dataclass
 
@@ -16,4 +17,5 @@ class Airtable:
     endpoint = f'https://api.airtable.com/v0/{self.base_id}/{self.table_name}'
     response = requests.get(endpoint, headers=headers)
     airtable_response = response.json()
-    return airtable_response
+
+    return [d['fields'] for d in airtable_response['records']]

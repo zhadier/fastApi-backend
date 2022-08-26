@@ -19,7 +19,7 @@ AIRTABLE_TABLE_NAME = os.environ.get("AIRTABLE_TABLE_NAME")
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",
+    "http://localhost:3001",
     "localhost:3000"
 ]
 
